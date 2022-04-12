@@ -23,6 +23,38 @@ namespace MemoGame
         public MainWindow()
         {
             InitializeComponent();
+            SetUpGame();
+
+        }
+
+        private void SetUpGame()
+        {
+            // deklaracja listy i inicjalizacja jej elementów
+            List<string> animalEmoji = new List<string>()
+            {
+                "🦓", "🦓",
+                "🦁", "🦁",
+                "🐼", "🐼",
+                "🐻", "🐻",
+                "🦒", "🦒",
+                "🐺", "🐺",
+                "🐼", "🐼",
+                "🦍", "🦍"
+            };
+
+            // iteracja po każdy obiekcie typu TextBlock
+            // wylosowanie dowolnego emoji z listy i przypisanie go do tymczasowej zmiennej
+            // przypisanie wylosowanej wartości do właściwości obiektu
+            // usunięcie elementu z listy
+            Random rnd = new Random();
+            foreach (TextBlock textBlock in mainGrid.Children.OfType<TextBlock>())
+            {
+                int index = rnd.Next(animalEmoji.Count);
+                string nextEmoji = animalEmoji[index];
+                textBlock.Text = nextEmoji;
+                animalEmoji.RemoveAt(index);
+
+            }
         }
     }
 }
